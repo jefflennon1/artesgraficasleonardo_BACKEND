@@ -4,7 +4,9 @@ const CommentModel = mongoose.model('Comments');
 
 module.exports = {
   async  index(req, res){
-    const comments = await CommentModel.paginate({},{ page: 1, limit: 10});
+    const { page } = req.query;
+    
+    const comments = await CommentModel.paginate({},{ page, limit: 2});
     return res.json(comments);
  },
     async create(req, res){
